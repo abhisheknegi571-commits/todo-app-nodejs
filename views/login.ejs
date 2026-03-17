@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — To-Do App</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0d0f14;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* ── CARD ── */
+    .login-container {
+      background: #13161e;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 400px;
+      animation: fadeUp 0.4s ease;
+    }
+
+    /* ── BRAND ── */
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .brand-dot {
+      width: 14px;
+      height: 14px;
+      background: #5b8dee;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #eef0f7;
+    }
+
+    /* ── HEADING ── */
+    .login-container h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #eef0f7;
+      text-align: center;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+
+    .login-container .subtitle {
+      text-align: center;
+      font-size: 0.83rem;
+      color: #4a5070;
+      margin-bottom: 28px;
+    }
+
+    /* ── FORM GROUPS ── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #7a82a0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── INPUTS ── */
+    .login-container input {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #eef0f7;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 9px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.22s, background 0.22s;
+    }
+
+    .login-container input::placeholder {
+      color: #4a5070;
+    }
+
+    .login-container input:focus {
+      border-color: #5b8dee;
+      background: rgba(91,141,238,0.07);
+    }
+
+    /* ── BUTTON ── */
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background: #5b8dee;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.22s, box-shadow 0.22s, transform 0.12s;
+    }
+
+    .login-container button:hover {
+      background: #7aa5f5;
+      box-shadow: 0 0 18px rgba(91,141,238,0.3);
+    }
+
+    .login-container button:active {
+      transform: scale(0.98);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .divider span {
+      font-size: 0.72rem;
+      color: #4a5070;
+    }
+
+    /* ── SIGNUP LINK ── */
+    .login-container .signup-text {
+      text-align: center;
+      font-size: 0.83rem;
+      color: #7a82a0;
+    }
+
+    .login-container .signup-text a {
+      color: #5b8dee;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .login-container .signup-text a:hover {
+      color: #7aa5f5;
+      text-decoration: underline;
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 28px 20px;
+      }
+
+      .login-container h1 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <span class="brand-name">To-Do App</span>
+    </div>
+
+    <h1>Welcome back</h1>
+    <p class="subtitle">Login to manage your tasks</p>
+
+    <form action="/login" method="POST">
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <button type="submit">Login</button>
+
+    </form>
+
+    <div class="divider"><span>or</span></div>
+
+    <p class="signup-text">
+      Don't have an account? <a href="/signup">Sign up</a>
+    </p>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — To-Do App</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0d0f14;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* ── CARD ── */
+    .signup-container {
+      background: #13161e;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 400px;
+      animation: fadeUp 0.4s ease;
+    }
+
+    /* ── BRAND ── */
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .brand-dot {
+      width: 14px;
+      height: 14px;
+      background: #5b8dee;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #eef0f7;
+    }
+
+    /* ── HEADING ── */
+    .signup-container h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #eef0f7;
+      text-align: center;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.83rem;
+      color: #4a5070;
+      margin-bottom: 28px;
+    }
+
+    /* ── FORM GROUPS ── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #7a82a0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── INPUTS ── */
+    .signup-container input {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #eef0f7;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 9px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.22s, background 0.22s;
+    }
+
+    .signup-container input::placeholder {
+      color: #4a5070;
+    }
+
+    .signup-container input:focus {
+      border-color: #5b8dee;
+      background: rgba(91,141,238,0.07);
+    }
+
+    /* ── BUTTON ── */
+    .signup-container button {
+      width: 100%;
+      padding: 12px;
+      background: #5b8dee;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.22s, box-shadow 0.22s, transform 0.12s;
+    }
+
+    .signup-container button:hover {
+      background: #7aa5f5;
+      box-shadow: 0 0 18px rgba(91,141,238,0.3);
+    }
+
+    .signup-container button:active {
+      transform: scale(0.98);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .divider span {
+      font-size: 0.72rem;
+      color: #4a5070;
+    }
+
+    /* ── LOGIN LINK ── */
+    .login-text {
+      text-align: center;
+      font-size: 0.83rem;
+      color: #7a82a0;
+    }
+
+    .login-text a {
+      color: #5b8dee;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .login-text a:hover {
+      color: #7aa5f5;
+      text-decoration: underline;
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .signup-container {
+        padding: 28px 20px;
+      }
+
+      .signup-container h1 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <span class="brand-name">To-Do App</span>
+    </div>
+
+    <h1>Create account</h1>
+    <p class="subtitle">Sign up to start managing your tasks</p>
+
+    <form action="/signup" method="POST">
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your full name"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <button type="submit">Create Account</button>
+
+    </form>
+
+    <div class="divider"><span>or</span></div>
+
+    <p class="login-text">
+      Already have an account? <a href="/login">Login</a>
+    </p>
+
+  </div>
+
+</body>
+</html>

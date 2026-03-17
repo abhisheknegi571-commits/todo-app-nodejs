@@ -1,0 +1,97 @@
+
+<link rel="stylesheet" href="/navbar.css">
+
+
+
+<nav class="navbar">
+
+  <!-- Brand -->
+  <h2>To-Do App</h2>
+
+  <!-- Task Stats (visible on tablet row-1, hidden on mobile until open) -->
+  <div class="task-stats" id="taskStats">
+    <span>Total: <%= totalTasks %></span>
+    <span>Completed: <%= completedTasks %></span>
+    <span>Pending: <%= pendingTasks %></span>
+  </div>
+
+  <!-- Hamburger Toggle (shown on tablet/mobile) -->
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Nav Links -->
+  <div class="nav-links" id="navLinks">
+    <a href="/">Task List</a>
+    <a href="/add">Add Task</a>
+    <a href="/priority/High">High </a>
+    <a href="/priority/Medium">Medium</a>
+    <a href="/priority/Low">Low</a>
+  </div>
+
+  <!-- Search -->
+  <form action="/search" method="GET" class="search-form" id="searchForm">
+    <input type="text" name="query" placeholder="Search task title..." />
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- User Info -->
+  <div class="user-info" id="userInfo">
+    Welcome <strong><%= username %></strong>
+    <a href="/logout">Logout</a>
+  </div>
+
+</nav>
+
+<!-- Flash Messages -->
+<% if(success && success.length > 0){ %>
+  <div class="flash success" id="flash-success">
+    <%= success %>
+  </div>
+<% } %>
+<% if(error && error.length > 0){ %>
+  <div class="flash error" id="flash-error">
+    <%= error %>
+  </div>
+<% } %>
+
+
+<script>
+  /* ── Flash auto-hide ── */
+  setTimeout(() => {
+    ['flash-success', 'flash-error'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.transition = 'opacity 0.5s';
+        el.style.opacity = '0';
+        setTimeout(() => el.style.display = 'none', 500);
+      }
+    });
+  }, 2000);
+
+  /* ── Mobile hamburger toggle ── */
+  const toggle    = document.getElementById('navToggle');
+  const navLinks  = document.getElementById('navLinks');
+  const searchForm = document.getElementById('searchForm');
+  const userInfo  = document.getElementById('userInfo');
+  const taskStats = document.getElementById('taskStats');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.classList.toggle('open');
+    navLinks.classList.toggle('open', isOpen);
+    searchForm.classList.toggle('open', isOpen);
+    userInfo.classList.toggle('open', isOpen);
+    taskStats.classList.toggle('open', isOpen);
+  });
+
+  /* ── Active link highlight ── */
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active');
+    }
+  });
+</script>
+
