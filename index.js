@@ -7,20 +7,24 @@ import { Task } from "./models/taskModel.js";
 import session from "express-session";
 import flash from "connect-flash";
 import dotenv from "dotenv";
-
+import MongoStore from "connect-mongo";
 
 dotenv.config();
 
 const app = express();
 
 //session middlewares
-app.set("trust proxy", 1);
+app.set("trust proxy",1);
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:false,
+
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI
+    }),
 
     cookie:{
       httpOnly:true,
