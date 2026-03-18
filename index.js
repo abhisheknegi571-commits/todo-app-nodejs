@@ -14,7 +14,8 @@ dotenv.config();
 const app = express();
 
 //session middlewares
-app.set("trust proxy",1);
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -23,7 +24,7 @@ app.use(
 
     cookie:{
       httpOnly:true,
-      secure:false,
+      secure: process.env.NODE_ENV === "production",
       maxAge:1000*60*60*24
     }
   })
