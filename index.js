@@ -8,11 +8,13 @@ import session from "express-session";
 import flash from "connect-flash";
 import dotenv from "dotenv";
 
+
 dotenv.config();
 
 const app = express();
 
 //session middlewares
+app.set("trust proxy",1);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -78,14 +80,6 @@ app.use(async (req, res, next) => {
 //user route
 app.use("/", userRouter);
 
-// protected middleware
-app.use((req, res, next) => {
-  if (req.session.userId) {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-});
 
 // task route
 app.use("/", taskRouter);
@@ -102,5 +96,5 @@ mongoose
 
 const PORT = process.env.PORT || 3000;
 app.listen(process.env.PORT, () => {
-  console.log("Server is running on port " + process.env.PORT);
+  console.log("Server is running on port " + PORT);
 });

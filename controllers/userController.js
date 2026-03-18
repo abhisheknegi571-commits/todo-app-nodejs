@@ -52,24 +52,34 @@ export const showLogin = (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (!email || !password) {
       req.flash("error", "Enter email and password");
       return res.redirect("/login");
     }
+
     const user = await User.findOne({ email });
+
     if (!user) {
       req.flash("error", "User not found");
       return res.redirect("/login");
     }
+
     const validPassword = await bcrypt.compare(password, user.password);
+
     if (!validPassword) {
       req.flash("error", "Wrong password");
       return res.redirect("/login");
     }
+
     req.session.userId = user._id;
     req.session.username = user.name;
-    req.flash("success", "Login successful");
-    res.redirect("/");
+
+    req.session.save(()=>{
+      req.flash("success","Login successful");
+      res.redirect("/");
+    });
+
   } catch (error) {
     console.error(error);
     req.flash("error", "Unable to login.");
