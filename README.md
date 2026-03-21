@@ -1,160 +1,161 @@
-# 📝 To-Do App
+# Todo App (Node.js + Express + MongoDB)
 
-A full-stack task management web application built with **Node.js**, **Express**, **MongoDB**, and **EJS** templating. Users can register, log in, and manage their tasks with priority levels, search, and completion tracking.
+A full stack To-Do application built using Node.js, Express.js and MongoDB that allows users to manage their daily tasks efficiently. Users can register, login and perform CRUD operations on tasks with priority management.
 
----
+## Live Demo
+https://todo-app-nodejs-ten.vercel.app
 
-## 🚀 Features
+## Features
 
-- **User Authentication** — Register and login with session-based auth
-- **Add Tasks** — Create tasks with a title, description, and priority level
-- **Edit & Delete Tasks** — Update or remove any task
-- **Mark as Complete** — Toggle task completion status
-- **Priority Filter** — Filter tasks by High, Medium, or Low priority
-- **Search Tasks** — Search tasks by title
-- **Flash Messages** — Success and error notifications
-- **Responsive UI** — Works on desktop, tablet, and mobile
+- User Authentication (Register/Login/Logout)
+- Session based authentication
+- Create new tasks
+- Edit tasks
+- Delete tasks
+- Task priority (High / Medium / Low)
+- Filter tasks by priority
+- Task status tracking (Completed / Pending)
+- Dashboard with task counters
+- Responsive UI
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
 
-| Layer      | Technology          |
-|------------|---------------------|
-| Runtime    | Node.js             |
-| Framework  | Express.js          |
-| Database   | MongoDB + Mongoose  |
-| Templating | EJS                 |
-| Auth       | express-session     |
-| Flash      | connect-flash       |
-| Styling    | Custom CSS (dark theme) |
+### Frontend
+- EJS
+- CSS
+- JavaScript
 
----
+### Other Tools
+- Express Session
+- dotenv
+- GitHub
+- Vercel Deployment
 
-## 📁 Folder Structure
+## Project Structure
 
 ```
+todo-app-nodejs/
+│
 ├── controllers/
-│   ├── taskController.js
-│   └── userController.js
 ├── middleware/
-│   └── authMiddleware.js
 ├── models/
-│   ├── taskModel.js
-│   └── userModel.js
-├── public/
-│   └── css/
-│       └── navbar.css
 ├── routes/
-│   ├── taskRoutes.js
-│   └── userRoutes.js
 ├── views/
-│   ├── navbar.ejs
-│   ├── list.ejs
-│   ├── add.ejs
-│   ├── update.ejs
-│   ├── login.ejs
-│   └── signup.ejs
+├── public/
+├── config/
+├── .env
 ├── index.js
-├── package.json
-└── README.md
+└── package.json
 ```
 
----
+## Installation & Setup
 
-## ⚙️ Installation & Setup
+### 1 Clone repository
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/todo-app.git
-cd todo-app
+```
+git clone https://github.com/abhisheknegi571-commits/todo-app-nodejs.git
 ```
 
-### 2. Install dependencies
+### 2 Go to project folder
 
-```bash
+```
+cd todo-app-nodejs
+```
+
+### 3 Install dependencies
+
+```
 npm install
 ```
 
-### 3. Create a `.env` file in the root directory
+### 4 Create .env file
 
-```env
-MONGO_URI=your_mongodb_connection_string
+Add:
+
+```
+MONGO_URL=your_mongodb_connection
 SESSION_SECRET=your_secret_key
-PORT=3000
 ```
 
-### 4. Start the server
+### 5 Run project
 
-```bash
-node index.js
+```
+npm start
 ```
 
-Or with nodemon (auto-restart on changes):
-
-```bash
-npm run dev
-```
-
-### 5. Open in browser
+Server runs on:
 
 ```
 http://localhost:3000
 ```
 
----
+## API Routes
 
-## 🔐 Environment Variables
+### Auth Routes
 
-| Variable        | Description                        |
-|-----------------|------------------------------------|
-| `MONGO_URI`     | MongoDB connection string          |
-| `SESSION_SECRET`| Secret key for session encryption  |
-| `PORT`          | Port number (default: 3000)        |
-
----
-
-## 📌 Routes Overview
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | /login | Login page |
+| POST | /login | User login |
+| GET | /register | Register page |
+| POST | /register | User registration |
+| GET | /logout | Logout user |
 
 ### Task Routes
 
-| Method | Route               | Access    | Description              |
-|--------|---------------------|-----------|--------------------------|
-| GET    | `/`                 | Public    | View all tasks           |
-| GET    | `/search`           | Public    | Search tasks by title    |
-| GET    | `/priority/:level`  | Public    | Filter by priority       |
-| GET    | `/add`              | Protected | Show add task form       |
-| POST   | `/add`              | Protected | Create new task          |
-| GET    | `/update/:id`       | Protected | Show edit task form      |
-| POST   | `/update/:id`       | Protected | Update task              |
-| GET    | `/delete/:id`       | Protected | Delete task              |
-| GET    | `/complete/:id`     | Protected | Toggle task completion   |
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | /tasks | Get all tasks |
+| GET | /add | Add task page |
+| POST | /add | Create task |
+| GET | /update/:id | Edit task page |
+| POST | /update/:id | Update task |
+| GET | /delete/:id | Delete task |
 
-### User Routes
+## Learning Outcomes
 
-| Method | Route      | Description        |
-|--------|------------|--------------------|
-| GET    | `/login`   | Show login page    |
-| POST   | `/login`   | Login user         |
-| GET    | `/signup`  | Show signup page   |
-| POST   | `/signup`  | Register new user  |
-| GET    | `/logout`  | Logout user        |
+Through this project I learned:
 
----
+- MVC Architecture
+- REST API development
+- Authentication implementation
+- MongoDB database integration
+- Middleware usage
+- Error handling
+- Deployment process
 
-## 🖼️ Screenshots
+## Future Improvements
 
-> Add screenshots of your app here after deployment.
+- JWT Authentication
+- Password hashing (bcrypt)
+- API documentation (Swagger)
+- Dark mode
+- Search functionality
+- Pagination
+- Email notifications
 
----
+## Screenshots
 
-## 🤝 Contributing
+(Add screenshots here)
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Author
 
----
+**Abhishek Negi**
 
-## 📄 License
+BCA Final Year Student  
+Aspiring Backend Developer
 
-This project is open source and available under the [MIT License](LICENSE).
+## Contact
+
+GitHub:
+https://github.com/abhisheknegi571-commits
+
+## License
+
+This project is for learning purposes.
